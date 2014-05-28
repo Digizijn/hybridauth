@@ -1,8 +1,8 @@
 <?php
 /*!
 * HybridAuth
-* http://hybridauth.sourceforge.net | https://github.com/hybridauth/hybridauth
-*  (c) 2009-2011 HybridAuth authors | hybridauth.sourceforge.net/licenses.html
+* http://hybridauth.sourceforge.net | http://github.com/hybridauth/hybridauth
+* (c) 2009-2012, HybridAuth authors | http://hybridauth.sourceforge.net/licenses.html
 */
 
 // ----------------------------------------------------------------------------------------
@@ -20,7 +20,8 @@ return
 			),
 
 			"Yahoo" => array ( 
-				"enabled" => true 
+				"enabled" => true,
+				"keys"    => array ( "id" => "", "secret" => "" ),
 			),
 
 			"AOL"  => array ( 
@@ -29,14 +30,13 @@ return
 
 			"Google" => array ( 
 				"enabled" => true,
-				"keys"    => array ( "id" => "", "secret" => "" ),
-				"scope"   => ""
+				"keys"    => array ( "id" => "", "secret" => "" ), 
 			),
 
 			"Facebook" => array ( 
 				"enabled" => true,
 				"keys"    => array ( "id" => "", "secret" => "" ),
-				"scope"   => ""
+				"trustForwarded" => false
 			),
 
 			"Twitter" => array ( 

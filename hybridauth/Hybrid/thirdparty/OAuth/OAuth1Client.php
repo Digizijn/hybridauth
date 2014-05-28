@@ -108,7 +108,7 @@ class OAuth1Client{
 	}
 
 	/** 
-	* GET wrappwer for provider apis request
+	* GET wrapper for provider apis request
 	*/
 	function get($url, $parameters = array())
 	{
@@ -116,7 +116,7 @@ class OAuth1Client{
 	} 
 
 	/** 
-	* POST wreapper for provider apis request
+	* POST wrapper for provider apis request
 	*/
 	function post($url, $parameters = array())
 	{
@@ -200,6 +200,10 @@ class OAuth1Client{
 
 		curl_setopt($ci, CURLOPT_URL, $url);
 		$response = curl_exec($ci);
+		if( $response === FALSE ) {
+				Hybrid_Logger::error( "OAuth1Client::request(). curl_exec error: ", curl_error($ci) );
+		}
+
 
 		Hybrid_Logger::debug( "OAuth1Client::request(). dump request info: ", serialize( curl_getinfo($ci) ) );
 		Hybrid_Logger::debug( "OAuth1Client::request(). dump request result: ", serialize( $response ) );

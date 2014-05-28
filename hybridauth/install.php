@@ -1,3 +1,9 @@
+<?php
+	$HYBRIDAUTH_VERSION = "2.1.1-dev";
+?><html> 
+<head>
+<title>HybridAuth Installer</title>
+<meta name="robots" content="NOINDEX, NOFOLLOW">  
 <style type="text/css">
 #content {
     background: none repeat scroll 0 0 #FFFFFF; 
@@ -69,8 +75,9 @@ ul li label {
    padding-top: 1px;
 } 
 </style> 
-<?php
-	$HYBRIDAUTH_VERSION             = "2.0.10-dev";
+</head>
+<body>
+<?php 
 	$CONFIG_TEMPLATE                = "";
 
    /**
@@ -95,8 +102,8 @@ ul li label {
 			isset( $_SERVER['SERVER_PORT'] ) 
 			&&( ($protocol === 'http://' && $_SERVER['SERVER_PORT'] != 80) || ($protocol === 'https://' && $_SERVER['SERVER_PORT'] != 443) )
 			? ':' . $_SERVER['SERVER_PORT'] 
-			: '';
-
+			: ''
+;
 		$url .= $_SERVER['PHP_SELF'];
 
 		// return current url
@@ -108,7 +115,7 @@ ul li label {
 	$GLOBAL_HYBRID_AUTH_PATH_BASE   = realpath( dirname( __FILE__ ) ) . "/";
 	$CONFIG_FILE_NAME               = $GLOBAL_HYBRID_AUTH_PATH_BASE . "config.php";
 
-	// deault providers
+	// default providers
 	$PROVIDERS_CONFIG      = ARRAY(
 								ARRAY( 
 									"label"             => "Facebook",
@@ -132,6 +139,14 @@ ul li label {
 									"provider_name"     => "Twitter",  
 									"new_app_link"      => "https://dev.twitter.com/apps",
 									"userguide_section" => "http://hybridauth.sourceforge.net/userguide/IDProvider_info_Twitter.html",
+								)
+								,
+								ARRAY( 
+									"label"             => "Yahoo",
+									"provider_name"     => "Yahoo!", 
+									"require_client_id" => TRUE, 
+									"new_app_link"      => "https://developer.apps.yahoo.com/dashboard/createKey.html",
+									"userguide_section" => "http://hybridauth.sourceforge.net/userguide/IDProvider_info_Yahoo.html",
 								)
 								,
 								ARRAY( 
@@ -173,13 +188,6 @@ ul li label {
 								)
 								,
 								ARRAY( 
-									"label"             => "Yahoo",
-									"provider_name"     => "Yahoo!", 
-									"new_app_link"      => NULL,
-									"userguide_section" => "http://hybridauth.sourceforge.net/userguide/IDProvider_info_Yahoo.html",
-								)
-								,
-								ARRAY( 
 									"label"             => "AOL",
 									"provider_name"     => "AOL", 
 									"new_app_link"      => NULL,
@@ -188,7 +196,7 @@ ul li label {
 							);
 
 	if( count( $_POST ) ):
-		$CONFIG_TEMPLATE = file_get_contents( "Hybrid/resources/config.php.tpl" );
+		$CONFIG_TEMPLATE = file_get_contents( $GLOBAL_HYBRID_AUTH_PATH_BASE . "Hybrid/resources/config.php.tpl" );
  
 		foreach( $_POST AS $k => $v ):
 			$v = strip_tags( $v );
@@ -221,8 +229,8 @@ ul li label {
 			<br /> 
 
 			<ul style="list-style:disc inside;"> 
-				<li style="color: #000000;font-size: 14px;"><b style="color:red">Don't forget to delete</b> ("<b>install.php</b>") file,</li>
-				<li style="color: #000000;font-size: 15px;">Visit the <a href="../examples/">examples</a> directory to try some working demos,</li> 
+				<li style="color: #000000;font-size: 14px;"><b style="color:red">Don't forget to delete</b> "<b>install.php</b>".</li>
+				<li style="color: #000000;font-size: 15px;">Visit the <a href="../examples/">examples</a> directory to try some working demos.</li> 
 				<li style="color: #000000;font-size: 15px;">Check out HybridAuth documentation at <a href="http://hybridauth.sourceforge.net">http://hybridauth.sourceforge.net</a>.</li> 
 			</ul> 
 
@@ -245,7 +253,7 @@ ul li label {
 
 <div id="content"> 
 	<?php
-		// check if php 5+. well donno the exact version to test, because it depend on which providers will be used..
+		// check if php 5+. well dunno the exact version to test, because it depend on which providers will be used..
 		if ( version_compare( PHP_VERSION, '5.2', '<=' ) ):
 	?>
 		<p style='background-color:#EE3322;color:#FFFFFF;margin:1em 0;padding:0.8em;border:1px #C52F24 solid;'><strong>Error: </strong> HybridAuth requires PHP 5.2 or higher</p>
@@ -284,13 +292,13 @@ ul li label {
 	<h1 style="margin-bottom: 15px;">HybridAuth <?php echo $HYBRIDAUTH_VERSION; ?> Installer</h1> 
 	<hr />
 
-	<h4>Imporant notices</h4> 
+	<h4>Important notices</h4> 
 
 	<ul style="list-style:disc inside;">
 		<li style="color: #000000;font-size: 14px;">For security reason, please delete ("<b>install.php</b>") file as soon as you complete the installation process,</li>
-		<li style="color: #000000;font-size: 14px;">Using the HybridAuth installer will erase your the existen configuration file. If you already have an old installation of HybridAuth you might want to keep a copy of <b>config.php</b> file,</li>
-		<li style="color: #000000;font-size: 14px;">HybridAuth include by default <?php echo count( $PROVIDERS_CONFIG ) + 1 ?> providers. If you want even more, please goto to HybridAuth web site and download the <a href="http://hybridauth.sourceforge.net/download.html">Additional Providers Package</a>.</li>
-		<li style="color: #000000;font-size: 14px;">Visit <a href="http://hybridauth.sourceforge.net/#installer">HybridAuth</a> Home page to make sure if there is any newer version.</li>
+		<li style="color: #000000;font-size: 14px;">Using the HybridAuth installer will erase your existing configuration file. If you already have an old installation of HybridAuth you might want to keep a copy of <b>config.php</b>,</li>
+		<li style="color: #000000;font-size: 14px;">HybridAuth includes by default <?php echo count( $PROVIDERS_CONFIG ) + 1 ?> providers. If you want even more, please go to to HybridAuth web site and download the <a href="http://hybridauth.sourceforge.net/download.html">Additional Providers Package</a>.</li>
+		<li style="color: #000000;font-size: 14px;">Visit the <a href="http://hybridauth.sourceforge.net/#installer">HybridAuth</a> home page to make sure if there is a newer version.</li>
 	</ul> 
  
 	<h4>HybridAuth Endpoint</h4> 
@@ -298,7 +306,7 @@ ul li label {
 	
 	<ul style="list-style:circle inside;">
 		<li style="color: #000000;font-size: 14px;">HybridAuth endpoint url is where the index.php is located.</li>
-		<li style="color: #000000;font-size: 14px;">HybridAuth enpoint should be set to <b>+rx mode</b> (read and execute permissions)</li>
+		<li style="color: #000000;font-size: 14px;">HybridAuth endpoint should be set to <b>+rx mode</b> (read and execute permissions)</li>
 	</ul>
 	
 	<div> 
@@ -321,7 +329,7 @@ ul li label {
 
 	<ul style="list-style:circle inside;">
 		<li style="color: #000000;font-size: 14px;">To correctly setup these Identity Providers please carefully follow the help section of each one.</li>
-		<li style="color: #000000;font-size: 14px;">If <b>Provider Adapter Satus</b> is set to <b style="color:red">Disabled</b> then users will not be able to login with this provider on you website.</li>
+		<li style="color: #000000;font-size: 14px;">If <b>Provider Adapter Status</b> is set to <b style="color:red">Disabled</b> then users will not be able to login with this provider on you website.</li>
 	</ul>
 
 <?php
@@ -346,7 +354,7 @@ ul li label {
 		<div class="cfg">
 		   <div class="cgfparams">
 			  <ul>
-				 <li><label><?php echo $provider_name ?> Adapter Satus</label>
+				 <li><label><?php echo $provider_name ?> Adapter Status</label>
 					<select name="<?php echo strtoupper( $provider ) ?>_ADAPTER_STATUS">
 						<option selected="selected" value="true">Enabled</option>
 						<option value="false">Disabled</option>
@@ -381,25 +389,29 @@ ul li label {
 					<?php endif; ?> 
 
 					<?php if ( $provider == "MySpace" ) : ?>
-						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>External Url</b> and <b>External Callback Validation</b> fields. This should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p>
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>External Url</b> and <b>External Callback Validation</b> fields. It should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p>
 					<?php endif; ?> 
 
 					<?php if ( $provider == "Live" ) : ?>
-						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Redirect Domain</b> field. This should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p>
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Redirect Domain</b> field. It should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p>
 					<?php endif; ?> 
 
 					<?php if ( $provider == "Facebook" ) : ?>
-						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Site Url</b> field. This should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Site Url</b> field. It should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
 					<?php endif; ?>	
 
 					<?php if ( $provider == "LinkedIn" ) : ?>
-						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Integration URL</b> field. This should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Integration URL</b> field. It should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
 						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Set the <b>Application Type</b> to <em style="color:#CB4B16;">Web Application</em>.</p> 
 					<?php endif; ?>	
 
+					<?php if ( $provider == "Yahoo" ) : ?>
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Application URL</b> and <b>Application Domain</b> fields. It should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Set the <b>Kind of Application</b> to <em style="color:#CB4B16;">Web-based</em>.</p> 
+					<?php endif; ?>	
+
 					<?php if ( $provider == "Twitter" ) : ?>
-						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Application Website</b> and <b>Application Callback URL</b> fields. This should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
-						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Set the <b>Application Type</b> to <em style="color:#CB4B16;">Browser</em>.</p> 
+						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Put your website domain in the <b>Application Website</b> and <b>Application Callback URL</b> fields. It should match with the current hostname <em style="color:#CB4B16;"><?php echo $_SERVER["SERVER_NAME"] ?></em>.</p> 
 						<p><?php echo "<b>" . ++$setupsteps . "</b>." ?> Set the <b>Default Access Type</b> to <em style="color:#CB4B16;">Read, Write, & Direct Messages</em>.</p> 
 					<?php endif; ?>	
 					
@@ -417,7 +429,7 @@ ul li label {
 ?>
 	<br /> 
 	<div style="text-align:center">
-		Thanks for scrolling this far down! now click the big button to complete the installation.
+		Thanks for scrolling this far down! Now click the big button to complete the installation.
 		<br />
 		<br />
 		<input type="submit" class="inputsave" value="Setup HybridAuth" /> 
@@ -432,14 +444,5 @@ ul li label {
 
 </div>
 
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-11037160-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-<script type="text/javascript"> var sc_project=7312365; var sc_invisible=1; var sc_security="30da00f3"; </script>
-<script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script> 
+</body>
+</html>

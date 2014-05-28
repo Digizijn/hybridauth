@@ -26,10 +26,10 @@
 		// or even inspect it
 		echo "<pre>" . print_r( $user_profile, true ) . "</pre><br />";
 
-		// uncomment the line above to get user freinds list
+		// uncomment the line below to get user friends list
 		// $twitter->getUserContacts();
 
-		// uncomment the line above to post something to twitter if you want to
+		// uncomment the line below to post something to twitter if you want to
 		// $twitter->setUserStatus( "Hello world!" );
 
 		// ex. on how to access the twitter api with hybridauth
@@ -37,8 +37,8 @@
 		//     https://dev.twitter.com/docs/api/1/get/account/totals
 		$account_totals = $twitter->api()->get( 'account/totals.json' );
 
-		// print recived stats 
-		echo "Here some of yours stats on twitter:<br /><pre>" . print_r( $account_totals, true ) . "</pre>";
+		// print received stats
+		echo "Here some of yours stats on Twitter:<br /><pre>" . print_r( $account_totals, true ) . "</pre>";
 
 		// logout
 		echo "Logging out.."; 
@@ -48,15 +48,15 @@
 		// In case we have errors 6 or 7, then we have to use Hybrid_Provider_Adapter::logout() to 
 		// let hybridauth forget all about the user so we can try to authenticate again.
 
-		// Display the recived error, 
+		// Display the received error,
 		// to know more please refer to Exceptions handling section on the userguide
 		switch( $e->getCode() ){ 
 			case 0 : echo "Unspecified error."; break;
-			case 1 : echo "Hybriauth configuration error."; break;
+			case 1 : echo "Hybridauth configuration error."; break;
 			case 2 : echo "Provider not properly configured."; break;
 			case 3 : echo "Unknown or disabled provider."; break;
 			case 4 : echo "Missing provider application credentials."; break;
-			case 5 : echo "Authentification failed. " 
+			case 5 : echo "Authentication failed. " 
 					  . "The user has canceled the authentication or the provider refused the connection."; 
 				   break;
 			case 6 : echo "User profile request failed. Most likely the user is not connected "

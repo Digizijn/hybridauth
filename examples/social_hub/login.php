@@ -1,4 +1,4 @@
-<?php
+<?php 
 	session_start(); 
 
 	// change the following paths if necessary 
@@ -34,7 +34,7 @@
 			// In case we have errors 6 or 7, then we have to use Hybrid_Provider_Adapter::logout() to 
 			// let hybridauth forget all about the user so we can try to authenticate again.
 
-			// Display the recived error, 
+			// Display the received error,
 			// to know more please refer to Exceptions handling section on the userguide
 			switch( $e->getCode() ){ 
 				case 0 : $error = "Unspecified error."; break;
@@ -42,7 +42,7 @@
 				case 2 : $error = "Provider not properly configured."; break;
 				case 3 : $error = "Unknown or disabled provider."; break;
 				case 4 : $error = "Missing provider application credentials."; break;
-				case 5 : $error = "Authentification failed. The user has canceled the authentication or the provider refused the connection."; break;
+				case 5 : $error = "Authentication failed. The user has canceled the authentication or the provider refused the connection."; break;
 				case 6 : $error = "User profile request failed. Most likely the user is not connected to the provider and he should to authenticate again."; 
 					     $adapter->logout(); 
 					     break;
@@ -134,7 +134,7 @@
 	<tr>  
 	<td>
 	<hr /> 
-	This exapmle show how users can login with providers using <b>HybridAuth</b>. It also show how to grab their profile, update their status or to grab their freinds list from services like facebook, twitter, myspace.
+	This example show how users can login with providers using <b>HybridAuth</b>. It also show how to grab their profile, update their status or to grab their freinds list from services like facebook, twitter, myspace.
 	<br />
 	<br />
 	If you want even more providers please goto to HybridAuth web site and download the <a href="http://hybridauth.sourceforge.net/download.html">Additional Providers Package</a>.

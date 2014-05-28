@@ -28,7 +28,7 @@
 		// In case we have errors 6 or 7, then we have to use Hybrid_Provider_Adapter::logout() to 
 		// let hybridauth forget all about the user so we can try to authenticate again.
 
-		// Display the recived error, 
+		// Display the received error,
 		// to know more please refer to Exceptions handling section on the userguide
 		switch( $e->getCode() ){ 
 			case 0 : echo "Unspecified error."; break;
@@ -36,7 +36,7 @@
 			case 2 : echo "Provider not properly configured."; break;
 			case 3 : echo "Unknown or disabled provider."; break;
 			case 4 : echo "Missing provider application credentials."; break;
-			case 5 : echo "Authentification failed. " 
+			case 5 : echo "Authentication failed. " 
 					  . "The user has canceled the authentication or the provider refused the connection."; 
 			case 6 : echo "User profile request failed. Most likely the user is not connected "
 					  . "to the provider and he should to authenticate again."; 
@@ -59,6 +59,9 @@
 <link rel="stylesheet" href="public/css.css" type="text/css">
 </head>
 <body>  
+<?php
+	if( $user_data ){
+?> 
 <table width="90%" border="0" cellpadding="2" cellspacing="2">
   <tr>
     <td valign="top">
@@ -95,7 +98,7 @@
                   </tr> 
                   <tr>
                     <td>profileURL</td>
-                    <td>&nbsp; <?php echo $user_data->profileURL; ?></td>
+                    <td>&nbsp; <a href="<?php echo $user_data->profileURL; ?>"><?php echo $user_data->profileURL; ?></a></td>
                   </tr>
                   <tr>
                     <td>webSiteURL</td>
@@ -178,7 +181,7 @@
 			  </td>
           </tr>  
         </table>
-      </fieldset>
+		</fieldset>
 	</td>
     <td valign="top" width="250" align="left"> 
 		<?php
@@ -186,8 +189,10 @@
 		?>
 	</td>
   </tr>
-</table>   
+</table>  
 <?php
+	} // if( $user_data )
+
 	include "includes/debugger.php";
 ?> 
 </body>
